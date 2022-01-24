@@ -1,8 +1,20 @@
 PROGRAM=gini
-build:
+.DEFAULT_GOAL := build
+fmt:
+	go fmt ./...
+
+lint: fmt
+	golint ./...
+
+vet: fmt
+	go vet ./...
+
+build: vet
 	go build
-run:
+
+run: 
 	go run $(PROGRAM)
+
 clean:
 	rm ./$(PROGRAM)
 
